@@ -1,0 +1,52 @@
+body,h1,h2,h3,h4,h5 {
+  font-family: "Raleway", sans-serif;
+}
+body {
+  background-image: url("images/Backgrounds/BlurredGridBackground.png");
+}
+
+.navbar .nav {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 24px;
+}
+
+.george-was-here {
+  position:fixed;
+  z-index:5;
+  width: 100%;
+}
+.nav-padding {
+  /* George says NEVER use !important  - if you have to use important you
+  are doing something wrong somewhere else.  But this is a hotfix, so.... */
+  padding-top: 100px!important;
+}
+
+.jumbotron {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 8px 16px -6px black;
+  padding: 40px 0;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+  background: #404040;
+  background: -moz-linear-gradient(45deg, #D3D3D3 0%, #404040 100%);
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#D3D3D3), color-stop(100%,#6d3353));
+  background: -webkit-linear-gradient(45deg, #D3D3D3 0%, #404040 100%);
+  background: -o-linear-gradient(45deg, #D3D3D3 0%, #404040 100%);
+  background: -ms-linear-gradient(45deg, #D3D3D3 0%, #404040 100%);
+  background: linear-gradient(45deg, #D3D3D3 0%, #404040 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 );
+  -ms-transform: rotate(3deg); /* IE 9 */
+  -webkit-transform: rotate(3deg); /* Chrome, Safari, Opera */
+  transform: rotate(3deg);
+}
+
+
+.scroll-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 900px;
+  min-width: 600px;
+  width: 100%;
+}
