@@ -6,15 +6,22 @@ const ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}`;
 async function loadContentfulHome() {
   const query = `
     query {
-      pageCollection(where:{slug:"home"}, limit:1){
+      pageCollection(where:{slug:"home"}, limit:1) {
         items {
           title
           body
+          sliderImagesCollection {
+            items {
+              url
+              title
+              description
+            }
+          }
         }
       }
     }`;
 
-  const response = await fetch(ENDPOINT, {
+  const res = await fetch(ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -23,15 +30,24 @@ async function loadContentfulHome() {
     body: JSON.stringify({ query }),
   });
 
-  const json = await response.json();
+  const json = await res.json();
   const page = json?.data?.pageCollection?.items?.[0];
+  if (!page) return;
 
-  // Fill in HTML elements
-  if (page) {
-    document.getElementById('page-title').textContent = page.title;
-    document.getElementById('page-body').innerHTML = page.body;
-  } else {
-    console.warn('No page content found in Contentful');
+  // Fill in content
+  document.getElementById('page-title').textContent = page.title;
+  document.getElementById('page-body').innerHTML = page.body;
+
+  // Build slider
+  const sliderContainer = document.getElementById('slider');
+  if (page.sliderImagesCollection.items.length) {
+    page.sliderImagesCollection.items.forEach((img) => {
+      const imgEl = document.createElement('img');
+      imgEl.src = img.url + '?w=1600&q=75&fm=webp'; // optimized delivery
+      imgEl.alt = img.title || 'Slide';
+      imgEl.classList.add('slide');
+      sliderContainer.appendChild(imgEl);
+    });
   }
 }
 
